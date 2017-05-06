@@ -1,16 +1,18 @@
 echo "FE Bundle"
 
-packageNum=`./testRabbitMQClient.php frontendPackage-v | xargs`
+packageNum=`php testRabbitMQClient.php frontendPackage-v | xargs`
 
-	cd temp
+	cd temp/
+	mkdir frontend
 	
 	DIR=/home/uzair/FE
 	
-        cp -a $DIR* temp/
+        cp -a $DIR* frontend/
+	cd ..
 	
-        tar -czvf frontendPackage-v"$packageNum".tar.gz -C temp/ .
+        tar -czvf frontendPackage-v"$packageNum".tar.gz -C temp/frontend .
 	
-        rm -r /home/uzair/frontEnd/tmp/FE
+        rm -r temp/frontend/
 	
 	echo `ls | grep frontendPackage-v"$packageNum"`
 	echo "Success"
